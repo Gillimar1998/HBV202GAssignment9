@@ -1,57 +1,60 @@
 package is.hi.hbv202g.ass9.compositeLeafObservedTemplateMethod;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+
 public class PlusCompositeTest {
 
-	private PlusComposite plusComposite;
+    private PlusComposite plusComposite;
 
-	@Before
-	public void createPlusComposite() {
-		plusComposite = new PlusComposite();
-	}
+    @Before
+    public void createPlusComposite() {
+        plusComposite = new PlusComposite();
+    }
 
-	@Test
-	public void testEmptyPlusComposite() {
-		assertEquals("An emoty plus composite should return 0", 0, plusComposite.getResult());
-	}
+    @Test
+    public void testEmptyPlusComposite() {
+        assertEquals("An emoty plus composite should return 0", Optional.of(0), plusComposite.getResult());
+    }
 
-	@Test
-	public void testOneElementPlusComposite() {
-		NumberLeaf number2 = new NumberLeaf(2);
+    @Test
+    public void testOneElementPlusComposite() {
+        NumberLeaf number2 = new NumberLeaf(2);
 
-		plusComposite.add(number2);
-		assertEquals("A plus composite consisting only of one leaf with value 2 should return 2",
-				2, plusComposite.getResult());
-	}
+        plusComposite.add(number2);
+        assertEquals("A plus composite consisting only of one leaf with value 2 should return 2",
+                Optional.of(2), plusComposite.getResult());
+    }
 
-	@Test
-	public void testTwoElementPlusComposite() {
-		NumberLeaf number1 = new NumberLeaf(1);
-		NumberLeaf number2 = new NumberLeaf(2);
+    @Test
+    public void testTwoElementPlusComposite() {
+        NumberLeaf number1 = new NumberLeaf(1);
+        NumberLeaf number2 = new NumberLeaf(2);
 
-		plusComposite.add(number1);
-		plusComposite.add(number2);
-		assertEquals("A plus composite consisting of leafs with values 1 and 2 should return 3",
-				3, plusComposite.getResult());
-	}
+        plusComposite.add(number1);
+        plusComposite.add(number2);
+        assertEquals("A plus composite consisting of leafs with values 1 and 2 should return 3",
+                Optional.of(3), plusComposite.getResult());
+    }
 
-	@Test
-	public void testNestedPlusComposite() {
-		NumberLeaf number1 = new NumberLeaf(1);
-		NumberLeaf number2 = new NumberLeaf(2);
+    @Test
+    public void testNestedPlusComposite() {
+        NumberLeaf number1 = new NumberLeaf(1);
+        NumberLeaf number2 = new NumberLeaf(2);
 
-		plusComposite.add(number1);
-		plusComposite.add(number2);
+        plusComposite.add(number1);
+        plusComposite.add(number2);
 
-		PlusComposite plusComposite2 = new PlusComposite();
-		plusComposite2.add(plusComposite);
-		plusComposite2.add(plusComposite);
+        PlusComposite plusComposite2 = new PlusComposite();
+        plusComposite2.add(plusComposite);
+        plusComposite2.add(plusComposite);
 
-		assertEquals("A plus composite consisting two further plus composites, each consisting of leafs with values " +
-				"1 and 2 should return (1+2)+(1+2)=6", 6, plusComposite2.getResult());
-	}
+        assertEquals("A plus composite consisting two further plus composites, each consisting of leafs with values " +
+                "1 and 2 should return (1+2)+(1+2)=6", Optional.of(6), plusComposite2.getResult());
+    }
 
 }

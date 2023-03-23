@@ -1,8 +1,11 @@
 package is.hi.hbv202g.ass9.composite;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
 
 public class PlusCompositeTest {
 
@@ -15,7 +18,7 @@ public class PlusCompositeTest {
 
     @Test
     public void testEmptyPlusComposite() {
-        assertEquals("An emoty plus composite should return 0", 0, plusComposite.getResult());
+        assertEquals("An emoty plus composite should return 0", Optional.of(0), plusComposite.getResult());
     }
 
     @Test
@@ -24,7 +27,7 @@ public class PlusCompositeTest {
 
         plusComposite.add(number2);
         assertEquals("A plus composite consisting only of one leaf with value 2 should return 2",
-                2, plusComposite.getResult());
+                Optional.of(2), plusComposite.getResult());
     }
 
     @Test
@@ -35,7 +38,7 @@ public class PlusCompositeTest {
         plusComposite.add(number1);
         plusComposite.add(number2);
         assertEquals("A plus composite consisting of leafs with values 1 and 2 should return 3",
-                3, plusComposite.getResult());
+                Optional.of(3), plusComposite.getResult());
     }
 
     @Test
@@ -51,7 +54,7 @@ public class PlusCompositeTest {
         plusComposite2.add(plusComposite);
 
         assertEquals("A plus composite consisting two further plus composites, each consisting of leafs with values " +
-                "1 and 2 should return (1+2)+(1+2)=6", 6, plusComposite2.getResult());
+                "1 and 2 should return (1+2)+(1+2)=6", Optional.of(6), plusComposite2.getResult());
     }
 
 }
